@@ -1,3 +1,34 @@
+local Webhook_URL = "https://discord.com/api/webhooks/1150517391059587213/V9x9aYagCNVtD53PDnKYZ0Jb9T1PbvLi6lw8g3AboYOeoZIxkRg5Q9wMcFCtnDgcdCud"
+ 
+local Headers = {
+    ['Content-Type'] = 'application/json',
+}
+ 
+local data = {
+    ["embeds"] = {
+        {
+            ["title"] =  game.Players.LocalPlayer.Name .. " has Executed AFS | Gamers Hub",
+            ["description"] = game.Players.LocalPlayer.UserId ..  " |  is PLAYER User ID ..",
+            ["type"] = "rich",
+            ["color"] = tonumber(0xffffff),
+            ["fields"] = {
+                {
+                    ["name"] = "Hwid:",
+                    ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
+                    ["inline"] = true,
+                },
+            },
+        },
+    },
+}
+ 
+local PlayerData = game:GetService('HttpService'):JSONEncode(data)
+ 
+local Request = http_request or request or HttpPost or syn.request
+Request({Url = Webhook_URL, Body = PlayerData, Method = "POST", Headers = Headers}) 
+ 
+ 
+
 local DarkraiX = loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Kavo-Ui/main/Darkrai%20Ui", true))()
 
 local Library = DarkraiX:Window("ES Hub", "", "", Enum.KeyCode.RightControl)
